@@ -1,0 +1,197 @@
+
+<!-- 
+<div class="d-flex flex-column bg-primary text-white p-2 sticky-top" [ngClass]="!isSidebarCollapsed ? 'w-25' : 'w-75'">
+    <div class="d-flex justify-content-between align-items-center border-bottom pb-2">
+        <div class="me-1 overflow-hidden">
+            <img class="img-fluid" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" style="height: 40px; width: auto;">
+        </div>
+        <div (click)="toggleSidebar()" class="cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"/>
+            </svg>
+        </div>
+    </div>
+
+  
+    <div class="mt-3">
+        <div *ngFor="let menu of menus; trackBy: menu.id">
+            <a class="d-flex align-items-center text-white text-decoration-none p-2 mb-2 bg-secondary rounded" >
+          
+                <span class="me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path [attr.d]="menu.icon" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+             
+                <span>{{ menu.title }}</span>
+            </a>
+        </div>
+    </div>
+</div> -->
+
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav">
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link">
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <!-- Shop Management Submenu -->
+        <li class="nav-item has-submenu">
+            <a class="nav-link collapsed" (click)="toggleMenu('shopManagement')" [attr.aria-expanded]="!isCollapsed('shopManagement')">
+                <span>Transcation</span>
+                <i [ngClass]="isCollapsed('shopManagement') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+            </a>
+            <ul id="components-nav" class="nav-content" [ngClass]="isCollapsed('shopManagement') ? 'show' : 'collapse'">
+              
+                <!-- Shop Details Submenu -->
+                <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('shopDetails')" [attr.aria-expanded]="!isCollapsed('shopDetails')">
+                        <span>Sanction Order </span>
+                        <i [ngClass]="isCollapsed('shopDetails') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="shopDetails-nav" class="nav-content" [ngClass]="isCollapsed('shopDetails') ? 'show' : 'collapse'">
+                        <li>
+                            <!-- <a routerLink="/sanction-order/sanction-order-entry"><span>Sanction Order Entry</span></a> -->
+                            <a (click)="sanctionentry()"><span>Sanction Order Entry</span></a>
+                        </li>
+                        <li><a (click)="sanctionorderinbox()"><span>Sanction Order Inbox</span></a></li>
+                        <li><a (click)="sanctionorderoutbox()"><span>Sanction Order Outbox</span></a></li>
+                    </ul>
+                </li>
+                <!-- Update Shop Details Submenu -->
+                <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('updateShopDetails')" [attr.aria-expanded]="!isCollapsed('updateShopDetails')">
+                        <span>Limit Allocation</span>
+                        <i [ngClass]="isCollapsed('updateShopDetails') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="updateShopDetails-nav" class="nav-content" [ngClass]="isCollapsed('updateShopDetails') ? 'show' : 'collapse'">
+                        <li><a href="#"><span>Limit Allocation Inbox</span></a></li>
+                        <li><a href="#"><span>Limit Allocation Outbox</span></a></li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('updatebilldetails')" [attr.aria-expanded]="!isCollapsed('updatebilldetails')">
+                        <span>Bill Generation</span>
+                        <i [ngClass]="isCollapsed('updatebilldetails') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="updatebilldetails-nav" class="nav-content" [ngClass]="isCollapsed('updatebilldetails') ? 'show' : 'collapse'">
+                        <li><a href="#"><span>Online Bill</span></a></li>
+                        <li><a href="#"><span>Offline Bill</span></a></li>
+                        <li class="nav-item has-submenu">
+                            <a class="nav-link collapsed" (click)="toggleMenu('updatebilldetailsinboxoutbox')" [attr.aria-expanded]="!isCollapsed('updatebilldetailsinboxoutbox')">
+                                <span>Bill Tranction</span>
+                                <i [ngClass]="isCollapsed('updatebilldetailsinboxoutbox') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                            </a>
+                            <ul id="updatebilldetailsinboxoutbox-nav" class="nav-content" [ngClass]="isCollapsed('updatebilldetailsinboxoutbox') ? 'show' : 'collapse'">
+                                <li><a href="#"><span>Bill Inbox</span></a></li>
+                                <li><a href="#"><span>Bill Outbox</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Vendor Management Submenu -->
+        <li class="nav-item has-submenu">
+            <a class="nav-link collapsed" (click)="toggleMenu('vendorManagement')" [attr.aria-expanded]="!isCollapsed('vendorManagement')">
+                <span>Master</span>
+                <i [ngClass]="isCollapsed('vendorManagement') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content" [ngClass]="isCollapsed('vendorManagement') ? 'show' : 'collapse'">
+                <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('vendordetail')" [attr.aria-expanded]="!isCollapsed('vendordetail')">
+                        <span> vendor Details </span>
+                        <i [ngClass]="isCollapsed('vendordetail') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="vendordetail-nav" class="nav-content" [ngClass]="isCollapsed('vendordetail') ? 'show' : 'collapse'">
+                        <li><a href="#"><span>Vendor Creation</span></a></li>
+                        <li><a href="#"><span>Vendor Approval</span></a></li>
+                       
+                        
+                    </ul>
+                </li>
+                 <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('deductionmapping')" [attr.aria-expanded]="!isCollapsed('deductionmapping')">
+                        <span> Deduction Account Mapping  </span>
+                        <i [ngClass]="isCollapsed('deductionmapping') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="deductionmapping-nav" class="nav-content" [ngClass]="isCollapsed('deductionmapping') ? 'show' : 'collapse'">
+                        <li><a href="#"><span>Deduction mapping </span></a></li>
+                        <li><a href="#"><span>Deduction mapping  Approval</span></a></li>
+                       
+                        
+                    </ul>
+                </li>
+                <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('AAdetails')" [attr.aria-expanded]="!isCollapsed('AAdetails')">
+                        <span> AA details  </span>
+                        <i [ngClass]="isCollapsed('AAdetails') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="AAdetails-nav" class="nav-content" [ngClass]="isCollapsed('AAdetails') ? 'show' : 'collapse'">
+                        <li><a href="#"><span>AA Creation</span></a></li>
+                        <li><a href="#"><span>AA Inbox</span></a></li>
+                       
+                        <li><a href="#"><span>AA Outbox</span></a></li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item has-submenu">
+                    <a class="nav-link collapsed" (click)="toggleMenu('Workdetails')" [attr.aria-expanded]="!isCollapsed('Workdetails')">
+                        <span> Workdetails  </span>
+                        <i [ngClass]="isCollapsed('Workdetails') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+                    </a>
+                    <ul id="Workdetails-nav" class="nav-content" [ngClass]="isCollapsed('Workdetails') ? 'show' : 'collapse'">
+                        <li><a href="#"><span>Workdetails Creation</span></a></li>
+                        <li><a href="#"><span>Workdetails Inbox</span></a></li>
+                       
+                        <li><a href="#"><span>Workdetails Outbox</span></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#"><span>Vendor Details</span></a></li>
+                <li><a href="#"><span>Update Vendor Details</span></a></li>
+            </ul>
+        </li>
+
+        <!-- Shop Budget Estimation Submenu -->
+        <li class="nav-item has-submenu">
+            <a class="nav-link collapsed" (click)="toggleMenu('shopBudgetEstimation')" [attr.aria-expanded]="!isCollapsed('shopBudgetEstimation')">
+                <span>Shop Budget Estimation</span>
+                <i [ngClass]="isCollapsed('shopBudgetEstimation') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+            </a>
+            <ul id="SBE-nav" class="nav-content" [ngClass]="isCollapsed('shopBudgetEstimation') ? 'show' : 'collapse'">
+                <li><a href="#"><span>Page7</span></a></li>
+                <li><a href="#"><span>Page8</span></a></li>
+                <li><a href="#"><span>Page9</span></a></li>
+            </ul>
+        </li>
+
+        <!-- Report Submenu -->
+        <li class="nav-item has-submenu">
+            <a class="nav-link collapsed" (click)="toggleMenu('reports')" [attr.aria-expanded]="!isCollapsed('reports')">
+                <span>Report</span>
+                <i [ngClass]="isCollapsed('reports') ? 'bi-chevron-up' : 'bi-chevron-down'" class="bi toggle-icon"></i>
+            </a>
+            <ul id="Reports-nav" class="nav-content" [ngClass]="isCollapsed('reports') ? 'show' : 'collapse'">
+                <li><a href="#"><span>Page7</span></a></li>
+                <li><a href="index.html"><span>Page8</span></a></li>
+                <li><a href="index.html"><span>Page9</span></a></li>
+            </ul>
+        </li>
+
+        <!-- Other Pages -->
+        <li class="nav-item"><a class="nav-link" href="#"><span>Login Page</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><span>Signup Page</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><span>Reset Page</span></a></li>
+    </ul>
+</aside>
+
+
+<!-- JavaScript to Toggle Icons -->

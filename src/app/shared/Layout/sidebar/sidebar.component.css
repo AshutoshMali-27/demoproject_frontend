@@ -1,0 +1,171 @@
+
+/* Styles for the logo */
+
+/* Styles for the toggle button */
+.toggle-sidebar-btn {
+  font-size: 24px; /* Larger icon size */
+  color: white; /* White icon color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for toggle button */
+.toggle-sidebar-btn:hover {
+  color: #f0f0f0; /* Lighter color on hover */
+}
+.sidebar {
+  height: 100vh;
+ /* width: 250px; */
+ /* position: fixed; */
+ /* top: 64px; */
+ /* left: 0; */
+ /* bottom: 0; */
+ position: fixed;
+  background: #222e3c;
+  color: white;
+  padding-top: 20px;
+  padding: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #aab7cf transparent;
+  box-shadow: 0 0 20px rgba(1, 41, 112, 0.1);
+  z-index: 996;
+  transition: all 0.3s;
+}
+
+/* Remove bullet points from sidebar navigation */
+.sidebar-nav {
+  padding: 0;
+  margin: 0;
+  list-style: none; /* Remove bullet points */
+}
+
+.nav-item {
+  margin-bottom: 5px;
+}
+
+ /* .nav-link, a { */
+   /* color: white; */
+   /* text-decoration: none; */
+   /* transition: color 0.3s; */
+ /*  *//*  */
+ /* .nav-link:hover, .nav-content a:hover { */
+   /* color: #222e3c; */
+   /* background: white; */
+ /* } */
+
+
+/* Styles for the parent element of "Shop Management" */
+.nav-item.has-submenu {
+  position: relative; /* For positioning the submenu */
+}
+
+/* Styles for the nav link of the parent element */
+.nav-link {
+  display: flex; /* Ensures the content is aligned properly */
+  align-items: center; /* Centers the text and icon vertically */
+  padding: 10px 15px; /* Adds padding for better spacing */
+  border-radius: 5px; /* Rounds the corners */
+  background-color: #2a3b4d; /* Darker background for better visibility */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+  text-decoration: none; /* Remove underline from the link */
+  justify-content: space-between;
+}
+
+/* Hover effect for the parent nav link */
+.nav-link:hover {
+  background-color: #1f2a37; /* Darker shade on hover */
+  color: #f0f0f0; /* Lighter text color on hover */
+}
+
+/* Styles for the submenu */
+.nav-content {
+  padding-left: 20px; /* Indent submenu items */
+  background-color: #2a3b4d; /* Match parent background */
+  border-radius: 0 0 5px 5px; /* Round the bottom corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+/* Styles for submenu links */
+.nav-content a {
+  display: flex; /* Aligns icon and text */
+  align-items: center; /* Centers vertically */
+  padding: 10px 0; /* Padding for submenu items */
+  color: white; /* Text color */
+  transition: background-color 0.3s; /* Smooth transition for background */
+  text-decoration: none; /* Remove underline from submenu links */
+}
+
+/* Hover effect for submenu links */
+.nav-content a:hover {
+  background-color: #3b4d6a; /* Lighter shade on hover */
+  color: navajowhite; /* Change text color on hover */
+}
+
+.nav-link i, .nav-content a i {
+  font-size: 12px;
+  margin-right: 0px;
+}
+
+
+
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f6f9ff;
+}
+
+/* Sidebar Collapse */
+.sidebar-nav .nav-content {
+  list-style: none; /* Remove bullet points */
+  padding-left: 0;
+}
+
+.sidebar-nav .nav-content a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px 0 10px 40px;
+}
+
+.nav-link:not(.collapsed) .bi-chevron-down {
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+
+/* Mobile styles */
+/* @media screen and (max-width: 1200px) { */
+  /* .sidebar { */
+      /* width: 215px; */
+  /* } */
+/* } */
+@media screen and (max-width< 1200px) {
+  .sidebar {
+      width: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .sidebar {
+    width: 10px;
+}
+
+ 
+
+  .sidebar {
+      width: 100%;
+      top: 43px;
+      display: none;
+  }
+
+  .sidebar.active {
+      display: block;
+  }
+
+
+}
+
+
+

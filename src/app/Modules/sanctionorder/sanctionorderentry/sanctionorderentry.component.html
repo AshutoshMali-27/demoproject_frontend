@@ -1,0 +1,129 @@
+<app-card2 (back)="goBack()">
+  <div header1 class="p-3">
+    <h4 class="mb-0">Sanction Order Entry</h4>
+  </div>
+
+  <div content1 class="p-4">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <app-controlcontainers
+              name="FinancialYearId"
+              label="Financial Year"
+              errorMsg="financial Year is required"
+              [isLabelOnSameLine]="false"
+              tooltipText="Enter your username">
+
+
+                <div class="dropdown-container">
+                  <select (change)="ddlfinyearchange($event)" class="form-control" formControlName="FinancialYearId">
+                    <option value="" disabled selected hidden>Choose a Financial Year</option> <!-- Placeholder option -->
+                    <option *ngFor="let item of finyear" [value]="item.id">{{ item.financialYear }}</option>
+                  </select>
+                  <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
+                </div>
+                
+                
+                
+            </app-controlcontainers>
+          </div>
+
+          <div class="col-md-4">
+            <app-controlcontainers
+              name="schemeid"
+              label="Scheme Name"
+              errorMsg="Scheme Name is required"
+              [isLabelOnSameLine]="false"
+              tooltipText="Enter your username"
+            >
+              <div class="dropdown-container">
+                <select (change)="ddlSchemeChange($event)" class="form-control" formControlName="schemeid">
+                  <option value="" disabled selected hidden>Choose a Scheme Name</option> <!-- Placeholder option -->
+                  <option *ngFor="let item of scheme" [value]="item.id">{{ item.schemename }}</option>
+                </select>
+                <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
+              </div>
+              
+            </app-controlcontainers>
+          </div>
+
+          <div class="col-md-4">
+            <app-controlcontainers
+              name="componentid"
+              label="Component Name"
+              errorMsg="Component Name is required"
+              [isLabelOnSameLine]="false"
+              tooltipText="Enter your username"
+            >
+              
+              <div class="dropdown-container">
+                <select (change)="ddlComponentChange($event)" class="form-control" formControlName="componentid">
+                  <option value="" disabled selected hidden>Choose a Scheme Name</option> <!-- Placeholder option -->
+                  <option *ngFor="let item of component" [value]="item.id">{{ item.componentName }}</option>
+                </select>
+                <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
+              </div>
+            </app-controlcontainers>
+
+
+
+            
+          </div>
+
+          @if(tablegroup!= false){
+          <div class="col-md-6">
+            <div class="row">
+              <table class="table table-bordered" style="border: 1px solid black;">
+                <tr class=" table-bordered">
+                  <td >
+  sanctionamount
+                  </td>
+                  <td>
+  expenditure amount
+                  </td>
+                  <td>
+  balance amount
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input
+                    type="text"
+                    text=""
+                    formControlName="sanctionAmount"
+                    class="form-control" [readOnly]="true"/>
+                  </td>
+                  <td>
+                 
+                    <input
+                    type="text"
+                    formControlName="expenditureAmount"
+                    class="form-control" [readOnly]="true" />
+          
+                  </td>
+                  <td>
+  
+                    <input
+                    type="text"
+                    formControlName="balanceAmount"
+                    class="form-control" [readOnly]="true" />
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        }
+        @else{
+
+        }
+         
+
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success m-2">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</app-card2>

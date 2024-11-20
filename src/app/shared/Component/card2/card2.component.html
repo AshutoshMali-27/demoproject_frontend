@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-header" >
+      <div class="header-content">
+        <!-- Left side: Title -->
+        <div class="title">
+          <ng-content select="[header1]"></ng-content>
+        </div>
+        
+        <!-- Right side: Back button -->
+        <button class="back-button" (click)="onBackClick()">Back</button>
+      </div>
+    </div>
+  
+    <div class="card-body">
+      <ng-content select="[content1]"></ng-content>
+    </div>
+  
+    <div class="card-footer" appHideifempty>
+      <ng-content select="[footer1]"></ng-content>
+    </div>
+  </div>
+  

@@ -1,0 +1,20 @@
+<div class="mb-3">
+    <input
+      type="file"
+      class="form-control"
+      [multiple]="multiple"
+      (change)="onFilesSelected($event)"
+    />
+  </div>
+  
+  <!-- <button class="btn btn-primary mb-3" (click)="onUpload()">Upload</button> -->
+  
+  <div *ngIf="files && files.length > 0" class="mt-3">
+    <h5>Selected Files:</h5>
+    <ul class="list-group">
+      <li *ngFor="let file of files" class="list-group-item">
+        {{ file.name }}
+      </li>
+    </ul>
+  </div>
+  

@@ -1,0 +1,26 @@
+/* Style for the dropdown container */
+.dropdown-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Style for the select dropdown */
+  .form-control {
+    padding-right: 40px; /* Add space to the right for the icon */
+  }
+  
+  /* Style for the down arrow icon */
+  .dropdown-icon {
+    position: absolute;
+    right: 10px;  /* Position the icon near the right edge of the select */
+    top: 50%;  /* Center the icon vertically */
+    transform: translateY(-50%); /* Adjust icon to perfectly center it vertically */
+    pointer-events: none;  /* Make the icon non-interactive */
+  }
+  
+  /* Optionally: Add Bootstrap styling for the select on focus */
+  .form-control:focus {
+    border-color: #80bdff;  /* Bootstrap focus color */
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25);  /* Bootstrap focus shadow */
+  }
+  

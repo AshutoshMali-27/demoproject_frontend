@@ -1,0 +1,15 @@
+.mb-3 {
+  display: flex;
+  flex-direction: column; /* Ensure the label is always stacked above the input */
+  gap: 0.5rem; /* Add spacing between label and input */
+}
+
+.form-label {
+  margin-bottom: 0; /* Ensure no default margin on label */
+}
+
+@media (max-width: 576px) {
+  .mb-3 {
+    align-items: flex-start; /* Proper alignment for smaller screens */
+  }
+}

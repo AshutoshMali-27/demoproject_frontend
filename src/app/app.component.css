@@ -1,0 +1,26 @@
+.layout {
+    display: grid;
+    grid-template-rows: 10vh auto; /* Navbar height and remaining screen height */
+    grid-template-columns: 15% auto; /* Sidebar width and main content width */
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+}
+
+.sidebar {
+    grid-row: 1 / span 2; /* Span sidebar across both rows */
+    grid-column: 1; /* Sidebar on the left */
+    border: 1px solid black;
+    height: 100%; /* Full height of the layout */
+}
+
+.navbar {
+    grid-row: 1; /* Navbar on top */
+    grid-column: 2; /* Navbar spans across the top right */
+    border: 1px solid black;
+}
+
+.content {
+    grid-row: 2; /* Main content area below navbar */
+    grid-column: 2; /* Main content next to sidebar */
+    border-top: 1px solid black;
+}

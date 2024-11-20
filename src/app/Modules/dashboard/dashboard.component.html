@@ -1,0 +1,22 @@
+<p>dashboard works!</p>
+<button (click)="openModal()">Open Modal</button>
+<app-modelpopup
+  [isVisible]="isModalVisible"
+  header="Custom Header"
+  content="Custom content goes here."
+  (close)="onModalClose()"
+  (confirm)="onModalConfirm()">
+</app-modelpopup>
+
+
+
+<button (click)="openModal4()">Open Modal</button>
+<app-modelpopup
+  [isVisible]="isModalVisible1"
+  header="Alert.!!"
+  content="who are you.!!!"
+  (close)="onModalClose1()"
+  (confirm)="onModalConfirm1()">
+</app-modelpopup>
+
+<router-outlet></router-outlet>

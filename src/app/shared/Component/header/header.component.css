@@ -1,0 +1,13 @@
+
+app-applogo {
+    display: block;
+    width: auto;
+    max-width: 8rem !important;
+    height: auto;
+    min-height: 1rem;
+    
+}
+
+.container-fluid{
+    background-color: #3ccbff;
+}

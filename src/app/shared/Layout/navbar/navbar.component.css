@@ -1,0 +1,78 @@
+/* General styles */
+
+/* Styles for the header */
+.header {
+    background-color: #343a40; /* Dark background color */
+    padding: 15px 20px; /* Padding for spacing */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between logo and toggle button */
+  }
+  
+  /* Styles for the logo */
+  .logo {
+    display: flex; /* Flexbox for logo alignment */
+    align-items: center; /* Center logo text vertically */
+    text-decoration: none; /* Remove underline from the logo link */
+  }
+  
+  /* Styles for the logo text */
+  .logo .span {
+    font-size: 24px; /* Larger font size for visibility */
+    font-weight: bold; /* Bold text for emphasis */
+    color: white; /* White text color */
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  /* Hover effect for logo text */
+  .logo .span:hover {
+    color: #f0f0f0; /* Lighter color on hover */
+  }
+  
+  /* Styles for the toggle button */
+  
+  .header {
+    background-color: #222e3c;
+    height: 10vh;
+  
+  
+    z-index: 1030;
+  }
+  
+  .header .toggle-sidebar-btn {
+    font-size: 21px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f6f9ff;
+  }
+  
+  
+  .nav-link:not(.collapsed) .bi-chevron-down {
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+  }
+  
+ 
+  
+  @media screen and (max-width: 600px) {
+    .header {
+        height: 43px;
+    }
+  
+    .header .toggle-sidebar-btn {
+        left: 10px;
+    }
+  
+   
+  
+    .header .span {
+        font-size: 16px;
+        left: 38px;
+    }
+  }
