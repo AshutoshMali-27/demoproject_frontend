@@ -9,7 +9,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { SanctionorderinboxComponent } from './sanctionorderinbox/sanctionorderinbox.component';
 import { SanctionorderoutboxComponent } from './sanctionorderoutbox/sanctionorderoutbox.component';
 import { HideifemptyDirective } from '../../shared/Directive/hideifempty.directive';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     SanctionorderRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
     
   ]
 })

@@ -24,3 +24,13 @@
     box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25);  /* Bootstrap focus shadow */
   }
   
+
+  .custom-file-input:lang(en) ~ .custom-file-label::after {
+    content: "Browse";
+  }
+  
+  .custom-file-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

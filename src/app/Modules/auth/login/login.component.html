@@ -1,92 +1,29 @@
+<div class="p-5">
+  <app-cards>
+    <header></header>
+    <content>
+      <h1 class="text-center">Login</h1>
+      <form (ngSubmit)="onlogin()" [formGroup]="form">
+        <div class="form-group">
+          <app-controlcontainers name="username" label="Username" errorMsg="Username is required"
+            [isLabelOnSameLine]="false" tooltipText="Enter your username">
+            <input type="text" formControlName="username" placeholder="john Doe" autocomplete="username"
+              class="form-control" id="username" />
+          </app-controlcontainers>
+        </div>
 
+        <!-- Password Field with app-controlcontainers -->
+        <div class="form-group">
+          <app-controlcontainers name="password" label="Password" errorMsg="Password is required"
+            [isLabelOnSameLine]="false" tooltipText="Enter your password">
+            <input type="password" formControlName="password" placeholder="Password" autocomplete="current-password"
+              class="form-control" id="password" />
+          </app-controlcontainers>
+        </div>
 
-
-<!-- 
-
-    <div class="p-5">
-        <app-cards>
-          <header></header>
-          <content>
-            <h1 class="text-center">Login</h1>
-            <form (ngSubmit)="onlogin()" [formGroup]="form">
-              <div class="form-group">
-            
-
-
-                <app-controlcontainers 
-                label="Username" 
-                type="required" 
-                position="aside"
-                [labelClass]="'col-form-label col-1 col-md-2'"
-                [contentClass]="'col-sm-12 col-md-8 col-lg-6'">
-                <input type="text" formControlName="username" placeholder="john Doe" autocomplete="username" class="form-control" id="username">
-              </app-controlcontainers>
-
-              </div>
-              <div class="form-group">
-                <app-controlcontainers label="Password" type="required">
-                  <input type="password" formControlName="password" placeholder="Password" autocomplete="current-password" class="form-control" id="password">
-                </app-controlcontainers>
-              </div>
-              <button type="submit" class="btn btn-success m-2">Save</button>
-            </form>
-          </content>
-        </app-cards>
-      </div> -->
-
-
-      <div class="p-5">
-        <app-cards>
-          <header></header>
-          <content>
-            <h1 class="text-center">Login</h1>
-            <form (ngSubmit)="onlogin()" [formGroup]="form">
-              
-              <!-- Username Field with app-controlcontainers -->
-              <div class="form-group">
-                <app-controlcontainers
-                  name="username"
-                  label="Username"
-                  errorMsg="Username is required"
-                  [isLabelOnSameLine]="false"
-                  tooltipText="Enter your username"
-                >
-                  <input
-                    type="text"
-                    formControlName="username"
-                    placeholder="john Doe"
-                    autocomplete="username"
-                    class="form-control"
-                    id="username"
-                  />
-                </app-controlcontainers>
-              </div>
-      
-              <!-- Password Field with app-controlcontainers -->
-              <div class="form-group">
-                <app-controlcontainers
-                  name="password"
-                  label="Password"
-                  errorMsg="Password is required"
-                  [isLabelOnSameLine]="false"
-                  tooltipText="Enter your password"
-                >
-                  <input
-                    type="password"
-                    formControlName="password"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    class="form-control"
-                    id="password"
-                  />
-                </app-controlcontainers>
-              </div>
-      
-              <!-- Submit Button -->
-              <button type="submit" class="btn btn-success m-2">Save</button>
-            </form>
-          </content>
-        </app-cards>
-      </div>
-      
-      
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success m-2">Save</button>
+      </form>
+    </content>
+  </app-cards>
+</div>

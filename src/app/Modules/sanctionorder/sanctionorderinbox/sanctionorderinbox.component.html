@@ -1,1 +1,39 @@
-<p>sanctionorderinbox works!</p>
+<app-card2 (back)="goBack()">
+    <div header1 class="p-3">
+      <h4 class="mb-0">Sanction Order Inbox</h4>
+    </div>
+  
+    <div content1 class="p-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">view slip</th>
+                    <th scope="col">Financial Year</th>
+                    <th scope="col">Scheme Name</th>
+                    <th scope="col">Component Name</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Sanction number</th>
+                    <th scope="col">Approval Status</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @for (data of sanctionorderinbox; track data.id; let i = $index) {
+
+                    <tr>
+                        <th scope="row">{{data.id}}</th>
+                        <td> {{data.financialYear}}</td>
+                        <td> {{data.schemename}}</td>
+                        <td> {{data.componentName}}</td>
+                        <td> {{data.amount}}</td>
+                        <td> {{data.sanctionnumber}}</td>
+                        <td> {{data.approvalStatus}}</td>
+                    </tr>
+
+                }
+                </tbody>
+                </table>
+
+    </div>
+
+    </app-card2>

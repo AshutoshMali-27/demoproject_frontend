@@ -14,7 +14,8 @@ export const routes: Routes = [
       
       
       {
-        path: 'sanction-order',
+        path: 'sanction-order',        
+        canActivate: [AuthGuard],
         loadChildren: () => import('./Modules/sanctionorder/sanctionorder.module').then(m => m.SanctionorderModule)
       },
       {

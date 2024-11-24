@@ -44,15 +44,6 @@
   margin-bottom: 5px;
 }
 
- /* .nav-link, a { */
-   /* color: white; */
-   /* text-decoration: none; */
-   /* transition: color 0.3s; */
- /*  *//*  */
- /* .nav-link:hover, .nav-content a:hover { */
-   /* color: #222e3c; */
-   /* background: white; */
- /* } */
 
 
 /* Styles for the parent element of "Shop Management" */
@@ -134,15 +125,10 @@
   transition: transform 0.2s;
 }
 
-/* Mobile styles */
-/* @media screen and (max-width: 1200px) { */
-  /* .sidebar { */
-      /* width: 215px; */
-  /* } */
-/* } */
+
 @media screen and (max-width< 1200px) {
   .sidebar {
-      width: 10px;
+      width: 20%;
   }
 }
 

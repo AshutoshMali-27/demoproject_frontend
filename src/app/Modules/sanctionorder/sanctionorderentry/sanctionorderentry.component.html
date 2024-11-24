@@ -4,39 +4,30 @@
   </div>
 
   <div content1 class="p-4">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-4">
-            <app-controlcontainers
-              name="FinancialYearId"
-              label="Financial Year"
-              errorMsg="financial Year is required"
-              [isLabelOnSameLine]="false"
-              tooltipText="Enter your username">
+            <app-controlcontainers name="FinancialYearId" label="Financial Year" errorMsg="financial Year is required"
+              [isLabelOnSameLine]="false" tooltipText="Enter your username">
 
 
-                <div class="dropdown-container">
-                  <select (change)="ddlfinyearchange($event)" class="form-control" formControlName="FinancialYearId">
-                    <option value="" disabled selected hidden>Choose a Financial Year</option> <!-- Placeholder option -->
-                    <option *ngFor="let item of finyear" [value]="item.id">{{ item.financialYear }}</option>
-                  </select>
-                  <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-                </div>
-                
-                
-                
+              <div class="dropdown-container">
+                <select (change)="ddlfinyearchange($event)" class="form-control" formControlName="FinancialYearId">
+                  <option value="" disabled selected hidden>Choose a Financial Year</option> <!-- Placeholder option -->
+                  <option *ngFor="let item of finyear" [value]="item.id">{{ item.financialYear }}</option>
+                </select>
+                <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
+              </div>
+
+
+
             </app-controlcontainers>
           </div>
 
           <div class="col-md-4">
-            <app-controlcontainers
-              name="schemeid"
-              label="Scheme Name"
-              errorMsg="Scheme Name is required"
-              [isLabelOnSameLine]="false"
-              tooltipText="Enter your username"
-            >
+            <app-controlcontainers name="schemeid" label="Scheme Name" errorMsg="Scheme Name is required"
+              [isLabelOnSameLine]="false" tooltipText="Enter your username">
               <div class="dropdown-container">
                 <select (change)="ddlSchemeChange($event)" class="form-control" formControlName="schemeid">
                   <option value="" disabled selected hidden>Choose a Scheme Name</option> <!-- Placeholder option -->
@@ -44,22 +35,21 @@
                 </select>
                 <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
               </div>
-              
+
             </app-controlcontainers>
           </div>
 
           <div class="col-md-4">
-            <app-controlcontainers
-              name="componentid"
-              label="Component Name"
-              errorMsg="Component Name is required"
-              [isLabelOnSameLine]="false"
-              tooltipText="Enter your username"
-            >
-              
+            <app-controlcontainers name="componentid" label="Component Name" errorMsg="Component Name is required"
+              [isLabelOnSameLine]="false" tooltipText="Enter your username">
+
               <div class="dropdown-container">
-                <select (change)="ddlComponentChange($event)" class="form-control" formControlName="componentid">
-                  <option value="" disabled selected hidden>Choose a Scheme Name</option> <!-- Placeholder option -->
+                <select 
+                  (change)="ddlComponentChange($event)" 
+                  class="form-control" 
+                  formControlName="componentid" 
+                  >
+                  <option value=""  selected>Please select a Component Name</option> <!-- Default placeholder -->
                   <option *ngFor="let item of component" [value]="item.id">{{ item.componentName }}</option>
                 </select>
                 <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
@@ -68,56 +58,101 @@
 
 
 
-            
+
           </div>
 
           @if(tablegroup!= false){
           <div class="col-md-6">
             <div class="row">
-              <table class="table table-bordered" style="border: 1px solid black;">
+              <table class="table table-bordered " style="border: 1px solid black;">
                 <tr class=" table-bordered">
-                  <td >
-  sanctionamount
+                  <td>
+                    sanctionamount
                   </td>
                   <td>
-  expenditure amount
+                    expenditure amount
                   </td>
                   <td>
-  balance amount
+                    balance amount
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input
-                    type="text"
-                    text=""
-                    formControlName="sanctionAmount"
-                    class="form-control" [readOnly]="true"/>
+                    <input type="text" text="" formControlName="sanctionAmount" class="form-control"
+                      [readOnly]="true" />
                   </td>
                   <td>
-                 
-                    <input
-                    type="text"
-                    formControlName="expenditureAmount"
-                    class="form-control" [readOnly]="true" />
-          
+
+                    <input type="text" formControlName="expenditureAmount" class="form-control" [readOnly]="true" />
+
                   </td>
                   <td>
-  
-                    <input
-                    type="text"
-                    formControlName="balanceAmount"
-                    class="form-control" [readOnly]="true" />
+
+                    <input type="text" formControlName="balanceAmount" class="form-control" [readOnly]="true" />
                   </td>
                 </tr>
               </table>
             </div>
           </div>
-        }
-        @else{
+          }
 
-        }
-         
+          <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-4">
+
+          
+            <app-controlcontainers name="amount" label="Amount " errorMsg="amount  required"
+            [isLabelOnSameLine]="false" tooltipText="Enter your username">
+          
+            <input formControlName="amount" type="text" placeholder="amount in Rupee" class="form-control">
+          </app-controlcontainers>
+        </div>
+
+
+        <div class="col-md-4">
+
+          
+          <app-controlcontainers name="sanctionnumber" label="Sanction No." errorMsg="sanction number is required"
+          [isLabelOnSameLine]="false" tooltipText="Enter your username">
+        
+          <input formControlName="sanctionnumber" type="text" placeholder="AB-134" class="form-control">
+        </app-controlcontainers>
+
+
+
+      </div>
+
+
+      <div class="col-md-4">
+
+          
+        <app-controlcontainers name="sanctionfileupload" label="Sanction File upload" errorMsg="sanction File is required"
+        [isLabelOnSameLine]="false" tooltipText="Enter your username">
+      
+        <div class="file-upload-container">
+          <!-- Bootstrap file input -->
+          <div class="custom-file">
+            <input 
+              type="file" 
+              class="form-control" 
+              id="customFile" 
+              (change)="onFileSelect($event)" 
+              formControlName="sanctionfileupload"
+              accept=".jpg,.png,.pdf,.docx" 
+            />
+            <label class="custom-file-label" for="customFile">
+              {{ selectedFileName || 'Choose file...' }}
+            </label>
+          </div>
+      
+        
+        </div>
+      </app-controlcontainers>
+      </div>
+          </div>
+
+          </div>
+
 
           <div class="col-md-12">
             <button type="submit" class="btn btn-success m-2">Save</button>

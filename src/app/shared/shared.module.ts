@@ -17,6 +17,7 @@ import { FileuploadComponent } from './Component/fileupload/fileupload.component
 import { ErrorComponent } from './Component/error/error.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgDatagridComponent } from './Component/ng-datagrid/ng-datagrid.component';
 
 
 
@@ -29,7 +30,7 @@ const COMMON_STANDALONE_COMP_LIST: any[] | Type<any> = [
   Card2Component,
   ModelpopupComponent,
   HideifemptyDirective,
-  
+
 
   
 ];
@@ -69,7 +70,7 @@ NgbModule
     SavebtnComponent,
   ControlcontainersComponent,
   DropdownComponent,
-  NgbModule
+  
 
 
 

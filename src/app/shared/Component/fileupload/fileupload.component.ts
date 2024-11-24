@@ -1,13 +1,21 @@
-import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Injector, Input, Output } from '@angular/core';
 import { BaseComponent } from '../../Ui-Component/BaseComponent';
 import { ApiService } from '../../Services/api.service';
 import { forkJoin } from 'rxjs';
 import { CommonModule, NgFor } from '@angular/common';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-fileupload',
   standalone: true,
   imports: [CommonModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FileuploadComponent),
+      multi: true,
+    },
+  ],
   templateUrl: './fileupload.component.html',
   styleUrl: './fileupload.component.css'
 })
@@ -40,7 +48,6 @@ export class FileuploadComponent  extends BaseComponent{
       this.service.upload(this.uploadUrl, file)
     );
 
-    // Use forkJoin to wait for all uploads to complete if uploading multiple files
     if (this.multiple) {
       forkJoin(uploadObservables).subscribe({
         next: (responses) => {

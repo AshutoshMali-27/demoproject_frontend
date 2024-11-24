@@ -1,11 +1,11 @@
 import { Component, Injector } from '@angular/core';
 import { BaseComponent } from '../../Ui-Component/BaseComponent';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgClass],
+  imports: [CommonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -26,7 +26,7 @@ collapsedStates: { [key: string]: boolean } = {};
   }
 
   sanctionentry(){
-  
+  debugger;
     this.router.navigate(['/sanction-order/sanction-order-entry']);
   }
   sanctionorderinbox(){

@@ -6,8 +6,12 @@
         sanctionAmount: number;
         expenditureAmount:number;
         balanceAmount:number;
+        amount:number;
+        sanctionnumber:string;
+        sanctionfileupload:string;
         utypeid:number;
         ulbid:number;
+        
 
         constructor(paramObject:object){
             return Object.assign(this,paramObject);
@@ -27,8 +31,11 @@
                 sanctionAmount:[Sanctionorder.sanctionAmount ],
                 expenditureAmount:[Sanctionorder.expenditureAmount ],
                 balanceAmount:[Sanctionorder.balanceAmount ],
+                amount:[Sanctionorder.amount || null,[Validators.required]],
+                sanctionnumber:[Sanctionorder.sanctionnumber || null,[Validators.required]],
                 utypeid:[Sanctionorder.utypeid || null],
                 ulbid:[Sanctionorder.ulbid || null],
+                sanctionfileupload:[Sanctionorder.sanctionfileupload || null,[Validators.required]]
         
             }
         )

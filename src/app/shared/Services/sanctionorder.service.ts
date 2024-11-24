@@ -16,12 +16,6 @@ export class SanctionorderService extends BaseService<sanctionorder,number> {
     super(api, sanction_order);
 }
 
-
-// getComponent(schemeid:number): Observable<any> {
-  
-//   return this.api.getWithParams(this.endpoint + "/getComponentName",schemeid);
-// }
-
 getComponent(schemeid: number): Observable<any> {
   // Append the schemeid directly to the URL
   return this.api.getWithParams(`${this.endpoint}/getComponentName/${schemeid}`, {});
@@ -31,25 +25,26 @@ getScheme(): Observable<any> {
   
   return this.api.get(this.endpoint + "/getSchemeName");
 }
+
 getFinancialYear(): Observable<any> {
   
   return this.api.get(this.endpoint + "/getFinancialYear");
 }
-
 
 getSanctionDetails(): Observable<any> {
   debugger;
   return this.api.get(this.endpoint + "/getsanctiondetails");
 }
 
+getSanctionDetailsinbox(): Observable<any> {
+  debugger;
+  return this.api.get(this.endpoint + "/getsanctiondetailinbox");
+}
+
+
 createsanctioorder(data: object):Observable<any> {
   debugger;
   return this.api.post(this.endpoint + "/InsertSanctionOrderEntry",data);
 }
-
-// getFinancialYear(): Observable<sanctionorder[]> {
-//   return this.api.get<sanctionorder[]>(`${this.endpoint}/getFinancialYear`);
-// }
-
 
 }

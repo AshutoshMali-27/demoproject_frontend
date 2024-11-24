@@ -1,0 +1,15 @@
+.table {
+    margin-bottom: 0;
+  }
+  
+  .pagination {
+    margin-top: 1rem;
+  }
+  
+  .sort-asc,
+  .sort-desc {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    color: #007bff;
+  }
+  
