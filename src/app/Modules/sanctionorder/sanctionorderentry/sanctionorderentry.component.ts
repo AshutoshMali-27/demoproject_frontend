@@ -1,7 +1,7 @@
 import { sanction_order } from './../../../shared/constants/constant';
 import { Component, inject, Injector, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../shared/Ui-Component/BaseComponent';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormControl, UntypedFormGroup } from '@angular/forms';
 import { DropdownOption } from '../../../shared/Models/DropdownOptions';
 import { FinancialYear } from '../../../shared/Models/FinancialYear';
 import { sanctionorder } from '../../../shared/Models/saanctionorder';
@@ -18,13 +18,18 @@ export class SanctionorderentryComponent extends BaseComponent  implements OnIni
 {
   form: UntypedFormGroup;
   SanctionOrder: sanctionorder;
-  scheme: Scheme[] = [];
-  finyear: FinancialYear[] = [];
-  component: component[] = [];
+  //scheme: Scheme[] = [];
+ // finyear: FinancialYear[] = [];
+  //component: component[] = [];
   isOpen = false;
   tablegroup: boolean = false;
   selectedFile: File | null = null;
   selectedFileName: string | null = null;
+  financialYears: Array<{ id: number, name: string }> = [];
+  schemename:  Array<{ id: number, name: string }> = [];
+  componentname:Array<{id:number,name:string}>=[];
+//  selectedFinYear = new FormControl('selectedFinYear');
+
 
   constructor(injector: Injector, private service: SanctionorderService) {
     super(injector);
@@ -38,55 +43,92 @@ export class SanctionorderentryComponent extends BaseComponent  implements OnIni
     this.loadSchemes();
   }
 
-  loadSchemes() {
+  loadSchemes(): void {
     this.service.getScheme().subscribe({
       next: (data) => {
         console.log(data);
-        this.scheme = data;
-        console.log(this.scheme);
+        this.schemename = data.map((item: any) => ({ id: item.id, name: item.schemename }));
+       console.log(this.schemename);
+      
+       this.loadComponent(this.id);
       },
       error: (err) => {
         console.error('Error fetching dropdown items', err);
       },
     });
   }
-  loadComponent(scheme: number) {
+
+  loadComponent(scheme: number):void{
     this.service.getComponent(scheme).subscribe({
       next: (data) => {
         console.log(data);
-        this.component = data;
-        console.log(this.component);
+        this.componentname = data.map((item: any) => ({ id: item.id, name: item.componentname }));
+        console.log(this.componentname);
       },
       error: (err) => {
         console.error('Error fetching dropdown items', err);
       },
     });
   }
+  // loadComponent(scheme: number) {
+  //   this.service.getComponent(scheme).subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //       this.component = data;
+  //       console.log(this.component);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching dropdown items', err);
+  //     },
+  //   });
+  // }
 
-  loadDropdownItems() {
+  loadDropdownItems(): void {
     this.service.getFinancialYear().subscribe({
       next: (data) => {
-        console.log(data);
-        this.finyear = data;
-        console.log(this.finyear);
+        this.financialYears = data.map((item: any) => ({ id: item.id, name: item.financialYear }));
       },
       error: (err) => {
         console.error('Error fetching dropdown items', err);
-      },
+      }
     });
   }
 
-  ddlfinyearchange(finyear: any): void {
-    this.isOpen = !this.isOpen;
-    const selectedFinyear = finyear.target.value; // Get the selected finyear value (item id)
-    console.log('Selected Finyear:', selectedFinyear);
+  // loadDropdownItems() {
+  //   this.service.getFinancialYear().subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //       this.finyear = data;
+  //       console.log(this.finyear);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching dropdown items', err);
+  //     },
+  //   });
+  // }
+
+  // ddlfinyearchange(finyear: any): void {
+  //   this.isOpen = !this.isOpen;
+  //   const selectedFinyear = finyear.target.value; // Get the selected finyear value (item id)
+  //   console.log('Selected Finyear:', selectedFinyear);
+  // }
+
+  onDropdownChange(selectedValue: string | number): void {
+debugger;
+    console.log('Selected Finyear:', selectedValue);
+    const selectedItem = this.financialYears.find(item => item.name);
+    const selectedLabel = selectedItem ? selectedItem.name : null; 
+    console.log('Selected Financial Year Label:', selectedLabel);
+
   }
 
-  ddlSchemeChange(schemeid: any): void {
-    this.isOpen = !this.isOpen;
-    const selectedscheme = schemeid.target.value; // Get the selected scheme value (item id)
-    console.log('Selected Scheme:', selectedscheme);
-    this.loadComponent(selectedscheme);
+  ddlSchemeChange(schemeid: string | number): void {
+    console.log('Selected Finyear:', schemeid);
+    // this.isOpen = !this.isOpen;
+    const selectedItem = this.schemename.find(item => item.name);
+    const selectedLabel = selectedItem ? selectedItem.name : null; // Get the selected scheme value (item id)
+    console.log('Selected Financial Year Label:', selectedLabel);
+  //  this.loadComponent(schemeid);
   }
 
   ddlComponentChange(componentid: any): void {
@@ -147,30 +189,40 @@ export class SanctionorderentryComponent extends BaseComponent  implements OnIni
 
   onSubmit() {
     if (this.form.valid) {
-      const utypeid = localStorage.getItem('utypeid');
-      const ulbid = localStorage.getItem('ulbid');
-      const payload = { ...this.form.value, utypeid: utypeid, ulbid: ulbid };
-      this.service
-        .createsanctioorder(payload)
-        .subscribe({
-          next: (response) => {
-            console.log(response);
-           // this.notify('save successfully!');
-
-            this.sweetservice.showSuccess('Save Sucessfully!').then(() => {
-             // console.log('Login Response:', response);
-            });
-          },
-          error: (err) => {
-            this.notify(
-              `error while saving! ${err?.error?.text}`,
-              this.NOTIFICATION_Types.ERROR
-            );
-          },
-        })
-        .add(() => {});
-    } else {
-      this.ValidateFormFields(this.form);
+      this.sweetservice.showConfirmation(
+        'Confirmation',
+        'Are you sure you want to save this data?',
+        'Save',
+        'Cancel',
+        'warning'
+      ).then((result) => {
+        if (result.isConfirmed) {
+          const utypeid = localStorage.getItem('utypeid');
+          const ulbid = localStorage.getItem('ulbid');
+          const payload = { ...this.form.value, utypeid: utypeid, ulbid: ulbid };
+  
+          this.service.createsanctioorder(payload).subscribe({
+            next: (response) => {
+              console.log(response);
+              this.sweetservice.showSuccess('Saved Successfully!').then(() => {
+                // Navigate to another page after success
+                this.router.navigate(['/sanction-order/sanction-order-inbox']); 
+              });
+            },
+            error: (err) => {
+              this.notify(
+                `Error while saving! ${err?.error?.text}`,
+                this.NOTIFICATION_Types.ERROR
+              );
+            },
+          });
+        } else {
+          console.log('User canceled the action.');
+        }
+      });
     }
   }
+  
+
+
 }

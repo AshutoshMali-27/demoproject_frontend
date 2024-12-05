@@ -1,91 +1,68 @@
-
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-ng-datagrid',
-  // standalone: true,
-  // imports: [],
+  standalone: true,
+  imports: [CommonModule, NgFor, NgIf, FormsModule],
   templateUrl: './ng-datagrid.component.html',
-  styleUrl: './ng-datagrid.component.css'
+  styleUrls: ['./ng-datagrid.component.css'],
 })
-// implements OnChanges 
-export class NgDatagridComponent  {
+export class NgDatagridComponent {
+  @Input() columns: Array<{ header: string; field: string; type?: string; buttonText?: string }> = [];
+  @Input() data: any[] = [];
+  @Input() totalColumns: string[] = []; // Specify columns for totals
+  @Output() buttonClick = new EventEmitter<any>();
 
-  // @Input() title: string = 'Table';
-  // @Input() data: any[] = [];
-  // @Input() columns: { field: string; header: string }[] = [];
-  // @Input() rows: number = 5;
-  // @Output() onView: EventEmitter<any> = new EventEmitter();
+  rowsPerPage: number = 5; // Default rows per page
+  rowsPerPageOptions: number[] = [5, 10, 100]; // Dropdown options for rows per page
+  currentPage: number = 1;
+  paginatedData: any[] = [];
+  filteredData: any[] = [];
+  searchQuery: string = '';
 
-  // currentPage: number = 1;
-  // currentSort: { field: string; direction: string } = { field: '', direction: '' };
-  // globalSearch: string = '';
-  // paginatedData: any[] = [];
-  // totalPages: number = 0;
+  ngOnInit(): void {
+    this.filteredData = [...this.data];
+    this.updatePagination();
+  }
 
-  // ngOnChanges(): void {
-  //   this.updateTable();
-  // }
+  ngOnChanges(): void {
+    this.filteredData = [...this.data];
+    this.updatePagination();
+  }
 
-  // applyGlobalSearch(searchValue: string): void {
-  //   this.globalSearch = searchValue;
-  //   this.currentPage = 1;
-  //   this.updateTable();
-  // }
+   updatePagination(): void {
+    const startIndex = (this.currentPage - 1) * this.rowsPerPage;
+    const endIndex = startIndex + this.rowsPerPage;
+    this.paginatedData = this.filteredData.slice(startIndex, endIndex);
+  }
 
-  // sortData(field: string): void {
-  //   if (this.currentSort.field === field) {
-  //     this.currentSort.direction =
-  //       this.currentSort.direction === 'asc' ? 'desc' : 'asc';
-  //   } else {
-  //     this.currentSort = { field, direction: 'asc' };
-  //   }
-  //   this.updateTable();
-  // }
+  applySearch(): void {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredData = this.data.filter(row =>
+      Object.values(row).some(value =>
+        value.toString().toLowerCase().includes(query)
+      )
+    );
+    this.currentPage = 1; // Reset to first page on search
+    this.updatePagination();
+  }
 
-  // changePage(page: number): void {
-  //   if (page < 1 || page > this.totalPages) return;
-  //   this.currentPage = page;
-  //   this.updateTable();
-  // }
+  changePage(newPage: number): void {
+    this.currentPage = newPage;
+    this.updatePagination();
+  }
 
-  // updateTable(): void {
-  //   let filteredData = this.data;
+  get totalPages(): number {
+    return Math.ceil(this.filteredData.length / this.rowsPerPage);
+  }
 
-  //   // Filter data based on global search
-  //   if (this.globalSearch) {
-  //     const searchValue = this.globalSearch.toLowerCase();
-  //     filteredData = filteredData.filter((item) =>
-  //       this.columns.some((col) =>
-  //         String(item[col.field]).toLowerCase().includes(searchValue)
-  //       )
-  //     );
-  //   }
+  getPageTotal(field: string): number {
+    return this.paginatedData.reduce((sum, row) => sum + (parseFloat(row[field]) || 0), 0);
+  }
 
-  //   // Sort data
-  //   if (this.currentSort.field) {
-  //     filteredData = [...filteredData].sort((a, b) => {
-  //       const valueA = a[this.currentSort.field];
-  //       const valueB = b[this.currentSort.field];
-  //       if (valueA < valueB) return this.currentSort.direction === 'asc' ? -1 : 1;
-  //       if (valueA > valueB) return this.currentSort.direction === 'asc' ? 1 : -1;
-  //       return 0;
-  //     });
-  //   }
-
-  //   // Paginate data
-  //   this.totalPages = Math.ceil(filteredData.length / this.rows);
-  //   this.paginatedData = filteredData.slice(
-  //     (this.currentPage - 1) * this.rows,
-  //     this.currentPage * this.rows
-  //   );
-  // }
-
-  // get pages(): number[] {
-  //   return Array.from({ length: this.totalPages }, (_, i) => i + 1);
-  // }
-
-  // onViewRecord(record: any): void {
-  //   this.onView.emit(record);
-  // }
+  getGrandTotal(field: string): number {
+    return this.data.reduce((sum, row) => sum + (parseFloat(row[field]) || 0), 0);
+  }
 }

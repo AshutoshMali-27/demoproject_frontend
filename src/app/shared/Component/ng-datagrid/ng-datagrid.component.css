@@ -1,15 +1,52 @@
+/* .datagrid-container {
+  width: 100%;
+  overflow-x: auto;
+}
+table.datagrid {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.datagrid th, table.datagrid td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+table.datagrid th {
+  cursor: pointer;
+  background: #f4f4f4;
+}
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pagination button {
+  padding: 5px 10px;
+} */
+
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.pagination .page-link {
+  cursor: pointer;
+}
+
 .table {
-    margin-bottom: 0;
-  }
-  
-  .pagination {
-    margin-top: 1rem;
-  }
-  
-  .sort-asc,
-  .sort-desc {
-    margin-left: 5px;
-    font-size: 0.8rem;
-    color: #007bff;
-  }
-  
+  margin-bottom: 1rem;
+}
+
+nav[aria-label="Page navigation"] {
+  text-align: right !important;
+  display: flex
+  ;
+      justify-content: right;
+}
+
+.custom-input-spacing {
+  margin-left: 10px; /* Adjust as needed */
+}

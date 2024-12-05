@@ -1,8 +1,7 @@
 
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, forwardRef, Input, Output, signal } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
@@ -17,16 +16,47 @@ import { BrowserModule } from '@angular/platform-browser';
       multi: true
     }
   ],
-  imports:[CommonModule, FormsModule]
+  imports:[CommonModule, FormsModule,ReactiveFormsModule]
 })
-export class DropdownComponent  {
-  @Input() items: { value: any; label: string }[] = [];
-  @Input() selectedValue: any;
-  @Output() valueChanged = new EventEmitter<any>();
+export class DropdownComponent  implements OnInit, ControlValueAccessor  {
+  @Input() items: Array<{ id: number | string, name: string }> = [];
+  @Input() placeholder: string = 'Choose an option';
+  @Input() formControl: FormControl = new FormControl();
+  @Output() valueChange: EventEmitter<string | number> = new EventEmitter<string | number>();
+  value: string | number | null = null;
+  onChange = (value: any) => {};
+  onTouched = () => {};
 
-  onValueChange(newValue: any): void {
-    this.valueChanged.emit(newValue);
+  constructor() { }
+  writeValue(value: string | number | null): void {
+    this.value = value;
   }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    throw new Error('Method not implemented.');
+  }
+  onValueChange(event: Event): void {
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.value = selectedValue;
+    this.onChange(selectedValue); // Notify Angular form control about the change
+    this.onTouched(); // Mark as touched
+    this.valueChange.emit(selectedValue); // Emit custom event
+  }
+
+
+  
+  ngOnInit(): void { }
+
+  // onValueChange(event: Event): void {
+  //   const selectedValue = (event.target as HTMLSelectElement).value;
+  //   this.valueChange.emit(selectedValue);
+  // }
 }
 
 

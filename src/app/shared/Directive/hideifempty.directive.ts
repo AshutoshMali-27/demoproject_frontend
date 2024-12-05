@@ -1,7 +1,8 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[appHideifempty]'
+  selector: '[appHideifempty]',
+  standalone: true,
 })
 export class HideifemptyDirective {
 

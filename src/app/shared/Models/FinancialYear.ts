@@ -1,4 +1,4 @@
 export interface  FinancialYear {
-    id: string | number;
+    id:  number;
     financialYear: string;
   }

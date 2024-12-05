@@ -11,7 +11,8 @@ import { SanctionorderoutboxComponent } from './sanctionorderoutbox/sanctionorde
 import { HideifemptyDirective } from '../../shared/Directive/hideifempty.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AgGridModule } from 'ag-grid-angular';
+import { DropdownComponent } from '../../shared/Component/dropdown/dropdown.component';
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import { BrowserModule } from '@angular/platform-browser';
     SanctionorderRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgGridModule,
+    DropdownComponent
     
   ]
 })

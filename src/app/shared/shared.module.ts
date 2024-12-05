@@ -14,10 +14,8 @@ import { ModelpopupComponent } from './Component/modelpopup/modelpopup.component
 import { HideifemptyDirective } from './Directive/hideifempty.directive';
 import { DropdownComponent } from './Component/dropdown/dropdown.component';
 import { FileuploadComponent } from './Component/fileupload/fileupload.component';
-import { ErrorComponent } from './Component/error/error.component';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgDatagridComponent } from './Component/ng-datagrid/ng-datagrid.component';
+import { ToggleThemeComponent } from './Layout/toggle-theme/toggle-theme.component';
 
 
 
@@ -28,10 +26,15 @@ const COMMON_STANDALONE_COMP_LIST: any[] | Type<any> = [
   ApplogoComponent,
   PopoversComponent,
   Card2Component,
-  ModelpopupComponent,
   HideifemptyDirective,
-
-
+  DropdownComponent,
+  SavebtnComponent,
+  ControlcontainersComponent,
+  ToggleThemeComponent,
+  FileuploadComponent,
+  NgDatagridComponent,
+  HideifemptyDirective,
+  
   
 ];
 
@@ -40,40 +43,20 @@ const COMMON_STANDALONE_COMP_LIST: any[] | Type<any> = [
   
   declarations: [
 
-COMMON_STANDALONE_COMP_LIST
+
 
   ],
   imports: [
-    
+    COMMON_STANDALONE_COMP_LIST,
     CommonModule,
    FormsModule,
    ReactiveFormsModule,
    RouterModule,
-   DropdownComponent,
-   FileuploadComponent,
-   SavebtnComponent,
-ControlcontainersComponent,
-DropdownComponent,
-NgbModule
-  
-
-   
-
-  
-  
- 
+   ReactiveFormsModule
   ],
   exports:[
     COMMON_STANDALONE_COMP_LIST,
-    DropdownComponent,
-    FileuploadComponent,
-    SavebtnComponent,
-  ControlcontainersComponent,
-  DropdownComponent,
-  
-
-
-
+   ReactiveFormsModule
   ],
   providers: [],
 

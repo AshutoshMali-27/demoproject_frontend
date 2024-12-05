@@ -8,7 +8,6 @@ export class sanctionorderdetailinbox {
   amount: number;
   sanctionnumber: number;
   approvalStatus: number;
-
   constructor(paramObject: object) {
     return Object.assign(this, paramObject);
   }
@@ -21,15 +20,17 @@ export class sanctionorderdetailinbox {
       componentName: [Sanctionorderinbox.componentName || null],
       amount: [Sanctionorderinbox.amount || null],
       sanctionnumber: [Sanctionorderinbox.sanctionnumber || null],
-      approvalStatus: [
-        Sanctionorderinbox.approvalStatus === 0
-          ? "Pending"
-          : Sanctionorderinbox.approvalStatus === 1
-          ? "Approver"
-          : Sanctionorderinbox.approvalStatus === -1
-          ? "Rejected"
-          : null,
-      ],
+
+      
+      // approvalStatus: [
+      //   Sanctionorderinbox.approvalStatus === 0
+      //     ? "Pending"
+      //     : Sanctionorderinbox.approvalStatus === 1
+      //     ? "Approver"
+      //     : Sanctionorderinbox.approvalStatus === -1
+      //     ? "Rejected"
+      //     : null,
+      // ],
     });
   }
 }

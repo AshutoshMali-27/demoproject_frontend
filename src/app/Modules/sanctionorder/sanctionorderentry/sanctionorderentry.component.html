@@ -12,13 +12,19 @@
               [isLabelOnSameLine]="false" tooltipText="Enter your username">
 
 
-              <div class="dropdown-container">
+              <!-- <div class="dropdown-container">
                 <select (change)="ddlfinyearchange($event)" class="form-control" formControlName="FinancialYearId">
-                  <option value="" disabled selected hidden>Choose a Financial Year</option> <!-- Placeholder option -->
+                  <option value="" disabled selected hidden>Choose a Financial Year</option> 
                   <option *ngFor="let item of finyear" [value]="item.id">{{ item.financialYear }}</option>
                 </select>
                 <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-              </div>
+              </div> -->
+            <app-dropdown
+            [items]="financialYears"
+            formControlName="FinancialYearId"
+            placeholder="Choose a Financial Year"
+            (valueChange)="onDropdownChange($event)">
+          </app-dropdown>
 
 
 
@@ -28,13 +34,20 @@
           <div class="col-md-4">
             <app-controlcontainers name="schemeid" label="Scheme Name" errorMsg="Scheme Name is required"
               [isLabelOnSameLine]="false" tooltipText="Enter your username">
-              <div class="dropdown-container">
+              <!-- <div class="dropdown-container">
                 <select (change)="ddlSchemeChange($event)" class="form-control" formControlName="schemeid">
-                  <option value="" disabled selected hidden>Choose a Scheme Name</option> <!-- Placeholder option -->
+                  <option value="" disabled selected hidden>Choose a Scheme Name</option> 
                   <option *ngFor="let item of scheme" [value]="item.id">{{ item.schemename }}</option>
                 </select>
                 <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-              </div>
+              </div> -->
+
+              <app-dropdown
+              [items]="schemename"
+              formControlName="schemeid"
+              placeholder="Choose a Scheme Name"
+              (valueChange)="ddlSchemeChange($event)">
+            </app-dropdown>
 
             </app-controlcontainers>
           </div>
@@ -43,17 +56,24 @@
             <app-controlcontainers name="componentid" label="Component Name" errorMsg="Component Name is required"
               [isLabelOnSameLine]="false" tooltipText="Enter your username">
 
-              <div class="dropdown-container">
+
+              <app-dropdown
+              [items]="componentname"
+              formControlName="componentid"
+              placeholder="Choose a Component Name"
+              (valueChange)="ddlComponentChange($event)">
+            </app-dropdown>
+              <!-- <div class="dropdown-container">
                 <select 
                   (change)="ddlComponentChange($event)" 
                   class="form-control" 
                   formControlName="componentid" 
                   >
-                  <option value=""  selected>Please select a Component Name</option> <!-- Default placeholder -->
+                  <option value=""  selected>Please select a Component Name</option> 
                   <option *ngFor="let item of component" [value]="item.id">{{ item.componentName }}</option>
                 </select>
                 <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-              </div>
+              </div> -->
             </app-controlcontainers>
 
 
@@ -105,6 +125,12 @@
             [isLabelOnSameLine]="false" tooltipText="Enter your username">
           
             <input formControlName="amount" type="text" placeholder="amount in Rupee" class="form-control">
+            <div *ngIf="form.get('amount').invalid && (form.get('amount').dirty || form.get('amount').touched)">
+              
+              <small class="text-danger" *ngIf="form.get('amount').hasError('pattern')">
+                Please enter a valid amount (up to two decimal places).
+              </small>
+            </div>
           </app-controlcontainers>
         </div>
 

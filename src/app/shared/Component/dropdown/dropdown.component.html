@@ -1,5 +1,4 @@
-<select [(ngModel)]="selectedValue" (ngModelChange)="onValueChange($event)">
-  <option *ngFor="let item of items" [value]="item.value">
-    {{ item.label }}
-  </option>
+<select class="form-control"  (change)="onValueChange($event)">
+  <option value="" disabled selected hidden>{{ placeholder }}</option>
+  <option *ngFor="let item of items" [value]="item.id">{{ item.name }}</option>
 </select>

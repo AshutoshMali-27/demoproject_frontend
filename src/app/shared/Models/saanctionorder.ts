@@ -31,7 +31,7 @@
                 sanctionAmount:[Sanctionorder.sanctionAmount ],
                 expenditureAmount:[Sanctionorder.expenditureAmount ],
                 balanceAmount:[Sanctionorder.balanceAmount ],
-                amount:[Sanctionorder.amount || null,[Validators.required]],
+                amount:[Sanctionorder.amount || null,[Validators.required,Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
                 sanctionnumber:[Sanctionorder.sanctionnumber || null,[Validators.required]],
                 utypeid:[Sanctionorder.utypeid || null],
                 ulbid:[Sanctionorder.ulbid || null],
