@@ -10,75 +10,28 @@
           <div class="col-md-4">
             <app-controlcontainers name="FinancialYearId" label="Financial Year" errorMsg="financial Year is required"
               [isLabelOnSameLine]="false" tooltipText="Enter your username">
-
-
-              <!-- <div class="dropdown-container">
-                <select (change)="ddlfinyearchange($event)" class="form-control" formControlName="FinancialYearId">
-                  <option value="" disabled selected hidden>Choose a Financial Year</option> 
-                  <option *ngFor="let item of finyear" [value]="item.id">{{ item.financialYear }}</option>
-                </select>
-                <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-              </div> -->
-            <app-dropdown
-            [items]="financialYears"
-            formControlName="FinancialYearId"
-            placeholder="Choose a Financial Year"
-            (valueChange)="onDropdownChange($event)">
-          </app-dropdown>
-
-
-
+              <app-dropdown [items]="financialYears" formControlName="FinancialYearId"
+                placeholder="Choose a Financial Year" (valueChange)="onDropdownChange($event)">
+              </app-dropdown>
             </app-controlcontainers>
           </div>
 
           <div class="col-md-4">
             <app-controlcontainers name="schemeid" label="Scheme Name" errorMsg="Scheme Name is required"
               [isLabelOnSameLine]="false" tooltipText="Enter your username">
-              <!-- <div class="dropdown-container">
-                <select (change)="ddlSchemeChange($event)" class="form-control" formControlName="schemeid">
-                  <option value="" disabled selected hidden>Choose a Scheme Name</option> 
-                  <option *ngFor="let item of scheme" [value]="item.id">{{ item.schemename }}</option>
-                </select>
-                <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-              </div> -->
-
-              <app-dropdown
-              [items]="schemename"
-              formControlName="schemeid"
-              placeholder="Choose a Scheme Name"
-              (valueChange)="ddlSchemeChange($event)">
-            </app-dropdown>
-
+              <app-dropdown [items]="schemename" formControlName="schemeid" placeholder="Choose a Scheme Name"
+                (valueChange)="ddlSchemeChange($event)">
+              </app-dropdown>
             </app-controlcontainers>
           </div>
 
           <div class="col-md-4">
             <app-controlcontainers name="componentid" label="Component Name" errorMsg="Component Name is required"
               [isLabelOnSameLine]="false" tooltipText="Enter your username">
-
-
-              <app-dropdown
-              [items]="componentname"
-              formControlName="componentid"
-              placeholder="Choose a Component Name"
-              (valueChange)="ddlComponentChange($event)">
-            </app-dropdown>
-              <!-- <div class="dropdown-container">
-                <select 
-                  (change)="ddlComponentChange($event)" 
-                  class="form-control" 
-                  formControlName="componentid" 
-                  >
-                  <option value=""  selected>Please select a Component Name</option> 
-                  <option *ngFor="let item of component" [value]="item.id">{{ item.componentName }}</option>
-                </select>
-                <i [class]="isOpen ? 'fa fa-chevron-up dropdown-icon' : 'fa fa-chevron-down dropdown-icon'"></i>
-              </div> -->
+              <app-dropdown [items]="componentName" formControlName="componentid" placeholder="Choose a component  Name"
+                (valueChange)="ddlComponentChange($event)">
+              </app-dropdown>
             </app-controlcontainers>
-
-
-
-
           </div>
 
           @if(tablegroup!= false){
@@ -102,12 +55,9 @@
                       [readOnly]="true" />
                   </td>
                   <td>
-
                     <input type="text" formControlName="expenditureAmount" class="form-control" [readOnly]="true" />
-
                   </td>
                   <td>
-
                     <input type="text" formControlName="balanceAmount" class="form-control" [readOnly]="true" />
                   </td>
                 </tr>
@@ -117,68 +67,44 @@
           }
 
           <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-4">
+                <app-controlcontainers name="amount" label="Amount " errorMsg="amount  required"
+                  [isLabelOnSameLine]="false" tooltipText="Enter your username">
+                  <input formControlName="amount" type="text" placeholder="amount in Rupee" class="form-control">
+                  <div *ngIf="form.get('amount').invalid && (form.get('amount').dirty || form.get('amount').touched)">
+                    <small class="text-danger" *ngIf="form.get('amount').hasError('pattern')">
+                      Please enter a valid amount (up to two decimal places).
+                    </small>
+                  </div>
+                </app-controlcontainers>
+              </div>
 
-          
-            <app-controlcontainers name="amount" label="Amount " errorMsg="amount  required"
-            [isLabelOnSameLine]="false" tooltipText="Enter your username">
-          
-            <input formControlName="amount" type="text" placeholder="amount in Rupee" class="form-control">
-            <div *ngIf="form.get('amount').invalid && (form.get('amount').dirty || form.get('amount').touched)">
-              
-              <small class="text-danger" *ngIf="form.get('amount').hasError('pattern')">
-                Please enter a valid amount (up to two decimal places).
-              </small>
+
+              <div class="col-md-4">
+                <app-controlcontainers name="sanctionnumber" label="Sanction No." errorMsg="sanction number is required"
+                  [isLabelOnSameLine]="false" tooltipText="Enter your username">
+                  <input formControlName="sanctionnumber" type="text" placeholder="AB-134" class="form-control">
+                </app-controlcontainers>
+              </div>
+
+
+              <div class="col-md-4">
+                <app-controlcontainers name="sanctionfileupload" label="Sanction File upload"
+                  errorMsg="sanction File is required" [isLabelOnSameLine]="false" tooltipText="Enter your username">
+                  <div class="file-upload-container">
+                    <div class="custom-file">
+                      <input type="file" class="form-control" id="customFile" (change)="onFileSelect($event)"
+                        formControlName="sanctionfileupload" accept=".jpg,.png,.pdf,.docx" />
+                      <label class="custom-file-label" for="customFile">
+                        {{ selectedFileName || 'Choose file...' }}
+                      </label>
+                    </div>
+                  </div>
+                </app-controlcontainers>
+              </div>
             </div>
-          </app-controlcontainers>
-        </div>
-
-
-        <div class="col-md-4">
-
-          
-          <app-controlcontainers name="sanctionnumber" label="Sanction No." errorMsg="sanction number is required"
-          [isLabelOnSameLine]="false" tooltipText="Enter your username">
-        
-          <input formControlName="sanctionnumber" type="text" placeholder="AB-134" class="form-control">
-        </app-controlcontainers>
-
-
-
-      </div>
-
-
-      <div class="col-md-4">
-
-          
-        <app-controlcontainers name="sanctionfileupload" label="Sanction File upload" errorMsg="sanction File is required"
-        [isLabelOnSameLine]="false" tooltipText="Enter your username">
-      
-        <div class="file-upload-container">
-          <!-- Bootstrap file input -->
-          <div class="custom-file">
-            <input 
-              type="file" 
-              class="form-control" 
-              id="customFile" 
-              (change)="onFileSelect($event)" 
-              formControlName="sanctionfileupload"
-              accept=".jpg,.png,.pdf,.docx" 
-            />
-            <label class="custom-file-label" for="customFile">
-              {{ selectedFileName || 'Choose file...' }}
-            </label>
           </div>
-      
-        
-        </div>
-      </app-controlcontainers>
-      </div>
-          </div>
-
-          </div>
-
 
           <div class="col-md-12">
             <button type="submit" class="btn btn-success m-2">Save</button>
