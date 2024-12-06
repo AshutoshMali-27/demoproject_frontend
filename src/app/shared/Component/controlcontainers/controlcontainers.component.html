@@ -1,32 +1,25 @@
-@if (!isLabelOnSameLine) {
-	<label [ngClass]="{ required: status && !control.disabled }" class="form-label">
-		{{ label }}
+<div *ngIf="!isLabelOnSameLine" class="form-label">
+	<label [ngClass]="{ required: status && !control?.disabled }">
+	  {{ label }}
 	</label>
-	<!--
-		<app-tooltip [target]="name" [tooltipText]="tooltipText" *ngIf="name && tooltipText && !control.disabled"></app-tooltip>
-	-->
-}
-<div [ngClass]="isLabelOnSameLine ? 'mt-0' : 'mt-3'" class="mb-3">
+  </div>
+  
+  <div [ngClass]="isLabelOnSameLine ? 'mt-0' : 'mt-3'" class="mb-3">
 	<ng-content></ng-content>
-	<!-- For Checkbox like Control, label is next to control. This template renders only for that case -->
-	<label *ngIf="isLabelOnSameLine" [ngClass]="{ 'text-danger': status && !control.disabled }" class="form-label ms-2">
-		{{ label }}
+  
+	<label
+	  *ngIf="isLabelOnSameLine"
+	  [ngClass]="{ 'text-danger': status && !control?.disabled }"
+	  class="form-label ms-2"
+	>
+	  {{ label }}
 	</label>
-	<!--
-		<app-tooltip [target]="name" [tooltipText]="tooltipText" *ngIf="name && tooltipText && !control.disabled"></app-tooltip>
-	-->
-	@if (control.errors) {
-		<ng-container>
-			<app-error
-				[displayError]="
-					control.invalid &&
-					control.touched &&
-					control.errors &&
-					control.errors['required']
-				"
-				[errorMsg]="errorMsg"
-			>
-			</app-error>
-		</ng-container>
-	}
-</div>
+  
+	<ng-container *ngIf="control?.errors">
+	  <app-error
+		[displayError]="control.invalid && control.touched && control.errors?.['required']"
+		[errorMsg]="errorMsg"
+	  ></app-error>
+	</ng-container>
+  </div>
+  

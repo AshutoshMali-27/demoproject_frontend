@@ -1,0 +1,26 @@
+<div *ngIf="isLabelOnSameLine" class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label [for]="name" class="col-form-label">
+        {{ label }}
+      </label>
+    </div>
+    <div class="col-auto">
+      <!-- Control (input) -->
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Help text if available -->
+    <div class="col-auto" *ngIf="tooltipText">
+      <span id="{{ name }}HelpInline" class="form-text">
+        {{ tooltipText }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Error Handling: Show error message if control is invalid for same line case -->
+  <div *ngIf="isLabelOnSameLine && control.errors && control.invalid && control.touched">
+    <app-error
+      [displayError]="control.errors?.['required']"
+      [errorMsg]="errorMsg">
+    </app-error>
+  </div>

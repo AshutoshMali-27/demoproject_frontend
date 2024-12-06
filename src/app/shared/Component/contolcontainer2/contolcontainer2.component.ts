@@ -1,23 +1,24 @@
+
 import { CommonModule, NgClass, NgIf } from '@angular/common';
 import { Component, Host, Input, OnInit, Optional, SkipSelf } from '@angular/core';
 import { AbstractControl, ControlContainer, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ErrorComponent } from '../error/error.component';
 
 @Component({
-  selector: 'app-controlcontainers',
+  selector: 'app-contolcontainer2',
   standalone: true,
   imports: [NgClass, NgIf, ErrorComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: ControlcontainersComponent,
+      useExisting: Contolcontainer2Component,
       multi: true,
     },
   ],
-  templateUrl: './controlcontainers.component.html',
-  styleUrls: ['./controlcontainers.component.css'],
+  templateUrl: './contolcontainer2.component.html',
+  styleUrl: './contolcontainer2.component.css'
 })
-export class ControlcontainersComponent implements OnInit, ControlValueAccessor {
+export class Contolcontainer2Component implements OnInit, ControlValueAccessor {
   control: AbstractControl | null = null;
 
   @Input() name: string = '';
